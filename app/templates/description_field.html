@@ -1,0 +1,15 @@
+<div class="form-group" hx-target="this" hx-swap="outerHTML">
+  <label for="description">Description: </label>
+  <input
+    value="{{description}}"
+    type="text"
+    hx-post="/validate/description"
+    hx-trigger="blur"
+    id="description"
+    name="description"
+    class="form-control mb-3 {% if error %} is-invalid {% endif %}"
+  />
+  {% if error %}
+  <div class="invalid-feedback">{{error}}</div>
+  {% endif %}
+</div>

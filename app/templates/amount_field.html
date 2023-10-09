@@ -1,0 +1,15 @@
+<div class="form-group col-md-4" hx-target="this" hx-swap="outerHTML">
+  <label for="amount">Amount: </label>
+  <input
+    value="{{amount|format_number}}"
+    type="number"
+    id="amount"
+    name="amount"
+    hx-post="/validate/amount"
+    hx-trigger="blur"
+    class="form-control mb-3 {% if error %} is-invalid {% endif %}"
+  />
+  {% if error %}
+  <div class="invalid-feedback">{{error}}</div>
+  {% endif %}
+</div>

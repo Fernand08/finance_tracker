@@ -1,0 +1,15 @@
+<div class="form-group col-md-4" hx-target="this" hx-swap="outerHTML">
+  <label for="amount">Date: </label>
+  <input
+    value="{{movement_date|format_date('%Y-%m-%d')}}"
+    type="date"
+    id="movement_date"
+    name="movement_date"
+    hx-post="/validate/movement-date"
+    hx-trigger="blur"
+    class="form-control mb-3 {% if error %} is-invalid {% endif %}"
+  />
+  {% if error %}
+  <div class="invalid-feedback">{{error}}</div>
+  {% endif %}
+</div>

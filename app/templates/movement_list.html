@@ -1,0 +1,47 @@
+<div class="card-header">
+  <div class="d-flex justify-content-between">
+    <h2>
+      Balance:
+      <span
+        {%
+        if
+        balance
+        <
+        0
+        %}
+        class="text-danger"
+        {%
+        else
+        %}
+        class="text-success"
+        {%
+        endif
+        %}
+        id="balance"
+        >{{balance|format_currency}}</span
+      >
+    </h2>
+    <button
+      class="btn btn-primary"
+      hx-get="/create-movement-form"
+      hx-trigger="click"
+      hx-target="#edit-movement-modal"
+      hx-swap="innerHTML"
+      data-toggle="modal"
+      data-target="#edit-movement-modal"
+    >
+      Add Movement
+    </button>
+  </div>
+</div>
+<div class="card-body overflow-scroll">
+  <div
+    class="list-group"
+    id="new-movement"
+    hx-target="closest div.card"
+    hx-swap="outerHTML swap:0.5s"
+  >
+    {%for movement in movements%} {% include 'movement_card.html' with context
+    %} {%endfor%}
+  </div>
+</div>

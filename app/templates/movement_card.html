@@ -1,0 +1,42 @@
+<div
+  class="list-group-item list-group-item-action flex-column align-items-start"
+  id="card-{{movement.id}}"
+>
+  <div class="d-flex w-100 justify-content-between">
+    {% if movement.movement_type == 'incomes' %}
+    <h5 class="text-success" role="alert">
+      {{movement.amount|format_currency}}
+    </h5>
+    {% else %}
+    <h5 class="text-danger" role="alert">
+      {{movement.amount|format_currency}}
+    </h5>
+    {% endif %}
+    <small class="text-muted">{{movement.movement_date|format_date}}</small>
+  </div>
+  <p class="mb-1">{{movement.description}}</p>
+  <div class="d-flex w-100 justify-content-end">
+    <a
+      href="#"
+      type="button"
+      data-toggle="modal"
+      data-target="#edit-movement-modal"
+      hx-get="/edit-movement-form/{{movement.id}}"
+      hx-target="#edit-movement-modal"
+      hx-swap="innerHTML"
+      class="text-primary"
+      hx-trigger="click"
+    >
+      Edit
+    </a>
+    <a
+      href="#"
+      type="button"
+      hx-delete="/delete/{{movement.id}}"
+      class="text-danger ml-5"
+      hx-trigger="click"
+    >
+      Delete
+    </a>
+  </div>
+</div>

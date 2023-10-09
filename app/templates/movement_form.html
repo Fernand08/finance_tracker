@@ -1,0 +1,55 @@
+<div class="form-group" hx-target="this" hx-swap="outerHTML">
+  <label for="description">Description: </label>
+  <input
+    value="{{movement.description}}"
+    type="text"
+    hx-post="/validate/description"
+    hx-trigger="blur"
+    id="description"
+    name="description"
+    class="form-control mb-3"
+  />
+</div>
+<div class="row">
+  <div class="form-group col-md-4" hx-target="this" hx-swap="outerHTML">
+    <label for="amount">Amount: </label>
+    <input
+      value="{{movement.amount|format_number}}"
+      type="number"
+      id="amount"
+      name="amount"
+      hx-post="/validate/amount"
+      hx-trigger="blur"
+      class="form-control mb-3"
+    />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="movement_type">Type: </label>
+    <select
+      value="{{movement.movement_type}}"
+      type="text"
+      id="movement_type"
+      name="movement_type"
+      class="form-control mb-3"
+    >
+      <option 
+        {% if movement.movement_type == 'incomes' %} selected {% endif %} 
+        value="incomes">Income</option>
+      <option 
+        {% if movement.movement_type == 'expenses' %} selected {% endif %} 
+        value="expenses">Expense</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4" hx-target="this" hx-swap="outerHTML">
+    <label for="amount">Date: </label>
+    <input
+      value="{{movement.movement_date|format_date('%Y-%m-%d')}}"
+      type="date"
+      id="movement_date"
+      name="movement_date"
+      hx-post="/validate/movement-date"
+      hx-trigger="blur"
+      class="form-control mb-3"
+    />
+  </div>
+</div>
